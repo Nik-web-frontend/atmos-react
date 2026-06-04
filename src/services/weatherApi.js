@@ -1,4 +1,4 @@
-const API_KEY = "apiKey"
+const API_KEY = "9b466a46f90b413e985151838262805"
 
 export async function getWeather(city) {
     const url = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`
@@ -11,4 +11,13 @@ export async function getWeather(city) {
 
     const data = await response.json()
     return data
+}
+
+export async function getWeatherByCoords(lat, lon) {
+    const url = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${lat},${lon}`
+
+    const response = await fetch(url)
+    const data = response.json();
+    return data;
+
 }

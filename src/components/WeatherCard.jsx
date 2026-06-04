@@ -1,23 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './weatherCard.css'
 const WeatherCard = ({ data }) => {
+    const [temperatureUnit, setTemperatureUnit] = useState('C');
+
     if (!data) {
-        return <p>Search a city to see weather</p>
+        return <div className="defaultMsg-container">
+            <p className='defaultMsg'>Allow location access or search for a city.</p>
+        </div>
     }
     return (
         <>
             <div className="temperature-container">
                 <div className="temperature-card">
                     <div className="temperature-unit">
-                        <button className="celsius">C</button>
-                        <button className="fahrenheit">F</button>
+                        <button className={`celsius ${temperatureUnit === 'C' ? 'active-unit' : ''}`} onClick={() => { setTemperatureUnit('C') }}>C</button>
+                        <button className={`fahrenheit ${temperatureUnit === 'F' ? 'active-unit' : ''}`} onClick={() => { setTemperatureUnit('C') }} onClick={() => { setTemperatureUnit('F') }}>F</button>
                     </div>
                     <div className="temperature-row">
                         <div className="temperature">
-                            <p className="current-temperature">{data.temp}° C</p>
+                            <p className='current-temperature'>{temperatureUnit === 'C' ? `${data.temp_c}° C` : `${data.temp_f}° F`}</p>
                             <p className="condition-text">{data.condition}</p>
-                            <p className="feels-like">feels like {data.feelsLike}</p>
-                            <p className="last-updated">Last updated {data.lastupdated}</p>
+                            <p className="feels-like">feels like {temperatureUnit === 'C' ? `${data.feelsLike_c}° C` : `${data.feelsLike_f}° F`}</p>
+                            <p className="last-updated">Last updated {data.lastUpdated}</p>
                         </div>
                         <div className="date-time">
                             <p className="time">{data.time}</p>
