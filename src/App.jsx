@@ -12,6 +12,25 @@ const App = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('');
 
+    function formattedData(data) {
+        return {
+            temp_c: data.current.temp_c,
+            temp_f: data.current.temp_f,
+            condition: data.current.condition.text,
+            feelsLike_c: data.current.feelslike_c,
+            feelsLike_f: data.current.feelslike_f,
+            lastUpdated: data.current.last_updated,
+            weatherIcon: `https:${data.current.condition.icon}`,
+            time: new Date().toLocaleTimeString("en-US", {
+                hour: 'numeric',
+                hour12: true,
+                minute: '2-digit'
+            }),
+            date: new Date().toDateString(),
+            location: data.location.name + " - " + data.location.country
+        }
+    }
+
     function getCurrentLocation() {
         navigator.geolocation.getCurrentPosition(
             async (position) => {
@@ -21,26 +40,9 @@ const App = () => {
                     setLoading(true)
                     const lat = position.coords.latitude;
                     const lon = position.coords.longitude;
-                    const data = await getWeatherByCoords(lat, lon);
+                    const data = await getWeatherByCoords(lat, lon)
 
-                    const formatted = {
-                        temp_c: data.current.temp_c,
-                        temp_f: data.current.temp_f,
-                        condition: data.current.condition.text,
-                        feelsLike_c: data.current.feelslike_c,
-                        feelsLike_f: data.current.feelslike_f,
-                        lastUpdated: data.current.last_updated,
-                        weatherIcon: `https:${data.current.condition.icon}`,
-                        time: new Date().toLocaleTimeString("en-US", {
-                            hour: 'numeric',
-                            hour12: true,
-                            minute: '2-digit'
-                        }),
-                        date: new Date().toDateString(),
-                        location: data.location.name + " - " + data.location.country
-                    }
-
-                    setWeather(formatted)
+                    setWeather(formattedData(data))
                 }
                 catch (error) {
                     setError(error.message)
@@ -87,24 +89,7 @@ const App = () => {
             setLoading(true)
             const data = await getWeather(city)
 
-            const formatted = {
-                temp_c: data.current.temp_c,
-                temp_f: data.current.temp_f,
-                condition: data.current.condition.text,
-                feelsLike_c: data.current.feelslike_c,
-                feelsLike_f: data.current.feelslike_f,
-                lastUpdated: data.current.last_updated,
-                weatherIcon: `https:${data.current.condition.icon}`,
-                time: new Date().toLocaleTimeString("en-US", {
-                    hour: 'numeric',
-                    hour12: true,
-                    minute: '2-digit'
-                }),
-                date: new Date().toDateString(),
-                location: data.location.name + " - " + data.location.country
-            }
-
-            setWeather(formatted)
+            setWeather(formattedData(data))
 
         } catch (error) {
             setError(error.message)
