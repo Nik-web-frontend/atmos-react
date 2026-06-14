@@ -14,12 +14,14 @@ const WeatherCard = ({ data }) => {
                 <div className="temperature-card">
                     <div className="temperature-unit">
                         <button className={`celsius ${temperatureUnit === 'C' ? 'active-unit' : ''}`} onClick={() => { setTemperatureUnit('C') }}>C</button>
-                        <button className={`fahrenheit ${temperatureUnit === 'F' ? 'active-unit' : ''}`} onClick={() => { setTemperatureUnit('C') }} onClick={() => { setTemperatureUnit('F') }}>F</button>
+                        <button className={`fahrenheit ${temperatureUnit === 'F' ? 'active-unit' : ''}`} onClick={() => { setTemperatureUnit('F') }}>F</button>
                     </div>
                     <div className="temperature-row">
                         <div className="temperature">
                             <p className='current-temperature'>{temperatureUnit === 'C' ? `${data.temp_c}° C` : `${data.temp_f}° F`}</p>
-                            <p className="condition-text">{data.condition}</p>
+                            <p className="condition-text">{data.condition} 
+                                <img src={data.weatherIcon} alt={`${data.condition}`}/>
+                            </p>
                             <p className="feels-like">feels like {temperatureUnit === 'C' ? `${data.feelsLike_c}° C` : `${data.feelsLike_f}° F`}</p>
                             <p className="last-updated">Last updated {data.lastUpdated}</p>
                         </div>

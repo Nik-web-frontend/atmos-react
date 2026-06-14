@@ -1,0 +1,14 @@
+.loader-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    font-size: 30px;
+}
+
+.loader-container p {
+    padding: 20px;
+    background-color: rgba(216, 237, 255, 0.551);
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 5px rgba(128, 128, 128, 0.37);
+}
