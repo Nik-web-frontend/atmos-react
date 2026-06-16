@@ -1,14 +1,14 @@
-import React from 'react'
-import './loader.css'
+import React from 'react';
+import './loader.css';
 
 const Loader = () => {
   return (
-    <>
-        <div className="loader-container">
-            <p>Weather Loading...</p>
-        </div>
-    </>
-  )
-}
+    <div className="loader-container">
+      <div className="dot"></div>
+      <div className="dot"></div>
+      <div className="dot"></div>
+    </div>
+  );
+};
 
-export default Loader
+export default Loader;
