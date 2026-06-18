@@ -3,10 +3,13 @@ import './App.css'
 import WeatherCard from './components/WeatherCard'
 import { getWeather, getWeatherByCoords } from './services/weatherApi'
 import Loader from './components/Loader'
+import Forecast from './components/Forecast'
 
 const App = () => {
 
     const [weather, setWeather] = useState(null)
+    const [temperatureUnit, setTemperatureUnit] = useState('C');
+    const [forecast, setForecast] = useState([]);
 
     const [city, setCity] = useState('');
     const [loading, setLoading] = useState(false)
@@ -27,7 +30,7 @@ const App = () => {
                 minute: '2-digit'
             }),
             date: new Date().toDateString(),
-            location: data.location.name + " - " + data.location.country
+            location: `${data.location.name} - ${data.location.country}`,
         }
     }
 
@@ -43,6 +46,7 @@ const App = () => {
                     const data = await getWeatherByCoords(lat, lon)
 
                     setWeather(formattedData(data))
+                    setForecast(data.forecast.forecastday)
                 }
                 catch (error) {
                     setError(error.message)
@@ -90,6 +94,10 @@ const App = () => {
             const data = await getWeather(city)
 
             setWeather(formattedData(data))
+            console.log(data.forecast.forecastday);
+            setForecast(data.forecast.forecastday)
+            // console.log(forecast)
+
 
         } catch (error) {
             setError(error.message)
@@ -105,6 +113,7 @@ const App = () => {
 
 
 
+
     return (
         <>
             <div className="navbar">
@@ -115,7 +124,34 @@ const App = () => {
                 </div>
             </div>
 
-            {loading ? <Loader /> : <WeatherCard data={weather} />}
+
+            <div className="temperature-container">
+
+
+                {loading ? (
+                    <Loader />
+                ) : (
+                    <>
+                        <WeatherCard data={weather} temperatureUnit={temperatureUnit} setTemperatureUnit={setTemperatureUnit} />
+                        <div className="forecast-container">
+                            {
+
+                                forecast.map((val) => {
+                                    return <Forecast key={val.date} data={val} temperatureUnit={temperatureUnit} />
+                                })
+
+                            }
+                        </div>
+
+
+                    </>
+                )
+
+                }
+
+
+            </div>
+
 
             {error && <p>{error}</p>}
 
