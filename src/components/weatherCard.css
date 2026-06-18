@@ -30,7 +30,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    gap: 30px;
+    /* gap: 30px; */
     flex-wrap: wrap;
 }
 
@@ -65,6 +65,7 @@
     justify-content: center;
     align-items: center;
     width: fit-content;
+    /* background-color: blue; */
     border-radius: 12px;
     /* backdrop-filter: blur(10px); */
 
@@ -74,7 +75,7 @@
 
 .celsius {
     color: white;
-    /* font-size: 20px; */
+    font-size: 15px;
     /* font-weight: 700; */
     background-color: rgba(255, 255, 255, 0.258);
     border: none;
@@ -82,6 +83,7 @@
     height: 30px;
     width: 30px;
     border-radius: 5px 0 0 5px;
+
 }
 
 .fahrenheit {
@@ -92,10 +94,11 @@
     height: 30px;
     width: 30px;
     border-radius: 0 5px 5px 0;
+    font-size: 15px;
 }
 
 .active-unit {
-    font-size: 20px;
+    /* font-size: 20px; */
     color: lawngreen;
 }
 
@@ -131,4 +134,30 @@
 .condition-text img {
     /* background-color: green;     */
     height: 30px;
+}
+
+@media (max-width: 768px) {
+
+    .temperature-card {
+        padding: 15px 20px;
+        border-radius: 15px;
+        min-height: 200px;
+        width: 95%;
+    }
+
+    .celsius, .fahrenheit {
+        font-size: 10px;
+    }
+
+    .current-temperature {
+        font-size: 28px;
+    }
+
+    .temperature-row .temperature {
+        font-size: 10px;
+    }
+
+    .temperature-row .date-time, .location {
+        font-size: 10px;
+    }
 }

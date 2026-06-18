@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './weatherCard.css'
-const WeatherCard = ({ data, temperatureUnit, setTemperatureUnit}) => {
+const WeatherCard = ({ data, temperatureUnit, setTemperatureUnit }) => {
 
     if (!data) {
         return <div className="defaultMsg-container">

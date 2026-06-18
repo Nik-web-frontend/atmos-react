@@ -9,7 +9,7 @@ const Forecast = ({data, temperatureUnit, setTemperatureUnit}) => {
     return (
         <div className='forecast-card'>
             <div className="first-row">
-                <div className="condition">
+                <div className="condition-date">
                     <div className="condition-icon-text">
                         <p className='text'>{data.day.condition.text}</p>
                         <img className='icon' src={`https:${data.day.condition.icon}`} alt={data.day.condition.text} />
