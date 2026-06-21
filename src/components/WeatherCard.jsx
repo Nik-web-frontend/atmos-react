@@ -22,11 +22,11 @@ const WeatherCard = ({ data, temperatureUnit, setTemperatureUnit }) => {
                             <img src={data.weatherIcon} alt={`${data.condition}`} />
                         </p>
                         <p className="feels-like">feels like {temperatureUnit === 'C' ? `${data.feelsLike_c}° C` : `${data.feelsLike_f}° F`}</p>
-                        <p className="last-updated">Last updated {data.lastUpdated}</p>
+                        <pre className="last-updated">Updated {data.lastUpdatedDate} | {data.lastUpdatedTime}</pre>
                     </div>
                     <div className="date-time">
                         <p className="time">{data.time}</p>
-                        <pre className="date">{data.date}</pre>
+                        <pre className="date">{data.day} | {data.date}</pre>
                         <p className="location">{data.location}</p>
 
                     </div>

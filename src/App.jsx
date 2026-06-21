@@ -22,14 +22,30 @@ const App = () => {
             condition: data.current.condition.text,
             feelsLike_c: data.current.feelslike_c,
             feelsLike_f: data.current.feelslike_f,
-            lastUpdated: data.current.last_updated,
+            lastUpdatedDate: new Date(data.current.last_updated).toLocaleDateString("en-GB", {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+            }),
+            lastUpdatedTime: new Date(data.current.last_updated).toLocaleTimeString("en-US", {
+                hour: 'numeric',
+                hour12: true,
+                minute: '2-digit'
+            }),
             weatherIcon: `https:${data.current.condition.icon}`,
             time: new Date().toLocaleTimeString("en-US", {
                 hour: 'numeric',
                 hour12: true,
                 minute: '2-digit'
             }),
-            date: new Date().toDateString(),
+            date: new Date().toLocaleDateString("en-GB", {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric'
+            }),
+            day: new Date().toLocaleDateString("en-US", {
+                weekday: "long"
+            }),
             location: `${data.location.name} - ${data.location.country}`,
         }
     }
