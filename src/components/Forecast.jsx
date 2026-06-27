@@ -5,7 +5,7 @@ const Forecast = ({data, temperatureUnit, setTemperatureUnit}) => {
     const day = new Date(data.date).toLocaleDateString('en-US', {
         weekday: 'long'
     }) 
-
+    
     return (
         <div className='forecast-card'>
             <div className="first-row">

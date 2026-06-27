@@ -1,0 +1,33 @@
+.card-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(230, 249, 255, 0.66);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.extra-icon {
+    color: rgb(116, 192, 252);
+}
+
+.card-content .text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.extra-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+.extra-value {
+    font-size: 15px;
+}

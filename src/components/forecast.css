@@ -112,7 +112,7 @@
         
     }
 
-    .temperature {
+    .second-row .temperature {
         font-size: 12px;
         margin-bottom: 5px;
     }
@@ -133,7 +133,7 @@
         align-items: center;
     }
 
-    .day, .date {
+    .day-date .date, .day {
         font-size: 6px;
     }
 

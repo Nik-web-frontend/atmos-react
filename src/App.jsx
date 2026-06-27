@@ -4,12 +4,14 @@ import WeatherCard from './components/WeatherCard'
 import { getWeather, getWeatherByCoords } from './services/weatherApi'
 import Loader from './components/Loader'
 import Forecast from './components/Forecast'
+import ExtrasCard from './components/ExtrasCard'
 
 const App = () => {
 
     const [weather, setWeather] = useState(null)
     const [temperatureUnit, setTemperatureUnit] = useState('C');
     const [forecast, setForecast] = useState([]);
+    const [extraData, setExtraData] = useState(null);
 
     const [city, setCity] = useState('');
     const [loading, setLoading] = useState(false)
@@ -63,6 +65,7 @@ const App = () => {
 
                     setWeather(formattedData(data))
                     setForecast(data.forecast.forecastday)
+                    setExtraData(data);
                 }
                 catch (error) {
                     setError(error.message)
@@ -99,8 +102,6 @@ const App = () => {
         );
     }
 
-
-
     async function handleSearch() {
         if (!city) return
 
@@ -110,10 +111,8 @@ const App = () => {
             const data = await getWeather(city)
 
             setWeather(formattedData(data))
-            console.log(data.forecast.forecastday);
             setForecast(data.forecast.forecastday)
-            // console.log(forecast)
-
+            setExtraData(data);
 
         } catch (error) {
             setError(error.message)
@@ -127,9 +126,6 @@ const App = () => {
         getCurrentLocation();
     }, [])
 
-
-
-
     return (
         <>
             <div className="navbar">
@@ -142,8 +138,6 @@ const App = () => {
 
 
             <div className="temperature-container">
-
-
                 {loading ? (
                     <Loader />
                 ) : (
@@ -151,23 +145,16 @@ const App = () => {
                         <WeatherCard data={weather} temperatureUnit={temperatureUnit} setTemperatureUnit={setTemperatureUnit} />
                         <div className="forecast-container">
                             {
-
                                 forecast.map((val) => {
                                     return <Forecast key={val.date} data={val} temperatureUnit={temperatureUnit} />
                                 })
-
                             }
                         </div>
-
-
+                        <ExtrasCard data={extraData} />
                     </>
                 )
-
                 }
-
-
             </div>
-
 
             {error && <p>{error}</p>}
 
