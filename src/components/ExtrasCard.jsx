@@ -12,6 +12,9 @@ import { WiSunset } from "react-icons/wi";
 import { BsThermometerHigh } from "react-icons/bs";
 import { CiTempHigh } from "react-icons/ci";
 import { BsThermometer } from "react-icons/bs";
+import { WiDayRain } from "react-icons/wi";
+import { WiDaySnow } from "react-icons/wi";
+import { WiCloud } from "react-icons/wi";
 
 import Loader from './Loader';
 import CardContent from './CardContent';
@@ -86,6 +89,24 @@ const ExtrasCard = ({ data }) => {
 
     ]
 
+    let cardThreeData = [
+        {
+            title: "Rain",
+            value: `${data.current.chance_of_rain}%`,
+            icon: WiDayRain
+        },
+        {
+            title: 'Snow',
+            value: `${data.current.chance_of_snow}%`,
+            icon: WiDaySnow
+        },
+        {
+            title: 'cloud',
+            value: `${data.current.cloud}%`,
+            icon: WiCloud
+        }
+    ]
+
 
     return (
         <>
@@ -122,7 +143,9 @@ const ExtrasCard = ({ data }) => {
                         </div>
                     </div>
                     <div className="card-three">
-
+                        {
+                            cardThreeData.map(val => <CardContent key={val.title} data={val} />)
+                        }
                     </div>
                 </div>
             </div>

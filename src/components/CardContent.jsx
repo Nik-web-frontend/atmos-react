@@ -14,7 +14,6 @@ const CardContent = ({ data }) => {
                     <p className='extra-value'>{data.value}</p>
                 </div>
             </div>
-
         </>
     )
 }
